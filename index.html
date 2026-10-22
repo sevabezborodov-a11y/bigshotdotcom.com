@@ -166,35 +166,6 @@
       image-rendering: pixelated;
     }
 
-    .big-shot-yes {
-      position: absolute;
-      z-index: 2;
-      display: inline-block;
-      padding: 10px 12px;
-      border: 3px solid #fff;
-      background: #11182b;
-      color: #f5f31e;
-      font: inherit;
-      font-size: 11px;
-      line-height: 1.4;
-      text-decoration: none;
-      box-shadow: 3px 3px 0 #28649b;
-    }
-
-    .big-shot-yes[hidden] { display: none; }
-
-    .big-shot-yes:hover, .big-shot-yes:focus-visible {
-      outline: 3px solid #f5f31e;
-      outline-offset: 3px;
-    }
-
-    .big-shot-yes:nth-of-type(1) { top: 8%; left: 8%; }
-    .big-shot-yes:nth-of-type(2) { top: 8%; right: 8%; }
-    .big-shot-yes:nth-of-type(3) { top: 43%; left: 1%; }
-    .big-shot-yes:nth-of-type(4) { top: 43%; right: 1%; }
-    .big-shot-yes:nth-of-type(5) { bottom: 8%; left: 8%; }
-    .big-shot-yes:nth-of-type(6) { right: 8%; bottom: 8%; }
-
     @media (max-width: 600px) {
       .welcome { top: 12px; }
       .deal { padding: 12px; }
@@ -207,10 +178,6 @@
       .portrait-button {
         width: min(280px, 68vw);
       }
-      .big-shot-yes {
-        padding: 10px 6px;
-        font-size: 9px;
-      }
     }
   </style>
 </head>
@@ -218,17 +185,11 @@
   <div class="background-scene">
     <img class="background-image" src="background.webp" alt="">
     <section class="big-shot" aria-labelledby="big-shot-question">
-      <p class="big-shot-question" id="big-shot-question">¿Quieres ser un [pez gordo]?<br>Entonces dale a Sí</p>
+      <p class="big-shot-question" id="big-shot-question">¿Quieres ser un [pez gordo]?<br>Haz clic en Spamton</p>
       <div class="big-shot-stage">
-        <a class="big-shot-yes" href="https://www.roblox.com/share?code=01060b73c1961743ab96b1ff700f3f8c&amp;type=Server" target="_blank" rel="noopener noreferrer" hidden>Sí</a>
-        <a class="big-shot-yes" href="https://www.roblox.com/share?code=01060b73c1961743ab96b1ff700f3f8c&amp;type=Server" target="_blank" rel="noopener noreferrer" hidden>Sí</a>
-        <a class="big-shot-yes" href="https://www.roblox.com/share?code=01060b73c1961743ab96b1ff700f3f8c&amp;type=Server" target="_blank" rel="noopener noreferrer" hidden>Sí</a>
-        <button class="portrait-button" id="portrait-button" type="button" aria-label="Cambiar expresión del personaje">
+        <a class="portrait-button" href="https://deltarune.com/sweepstakes/" aria-label="Abrir la página de Deltarune Sweepstakes">
           <img id="portrait" src="spamton-closed.webp" alt="Personaje pixelado con la boca cerrada">
-        </button>
-        <a class="big-shot-yes" href="https://www.roblox.com/share?code=01060b73c1961743ab96b1ff700f3f8c&amp;type=Server" target="_blank" rel="noopener noreferrer" hidden>Sí</a>
-        <a class="big-shot-yes" href="https://www.roblox.com/share?code=01060b73c1961743ab96b1ff700f3f8c&amp;type=Server" target="_blank" rel="noopener noreferrer" hidden>Sí</a>
-        <a class="big-shot-yes" href="https://www.roblox.com/share?code=01060b73c1961743ab96b1ff700f3f8c&amp;type=Server" target="_blank" rel="noopener noreferrer" hidden>Sí</a>
+        </a>
       </div>
     </section>
   </div>
@@ -247,21 +208,6 @@
     const yesButton = document.querySelector("#yes-button");
     const noButton = document.querySelector("#no-button");
     const yesLink = document.querySelector("#yes-link");
-    const portraitButton = document.querySelector("#portrait-button");
-    const portrait = document.querySelector("#portrait");
-    let mouthOpen = false;
-
-    portraitButton.addEventListener("click", () => {
-      mouthOpen = !mouthOpen;
-      portrait.src = mouthOpen ? "spamton-open.png" : "spamton-closed.webp";
-      portrait.alt = mouthOpen
-        ? "Personaje pixelado con la boca abierta"
-        : "Personaje pixelado con la boca cerrada";
-      document.querySelectorAll(".big-shot-yes").forEach((link) => {
-        link.hidden = false;
-      });
-    });
-
     yesButton.addEventListener("click", () => {
       yesLink.hidden = false;
     });

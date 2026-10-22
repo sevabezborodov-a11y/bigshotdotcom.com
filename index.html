@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#65b9df">
+  <meta name="description" content="BigShotDotCom: una página pixelada con un trato especial, un personaje sorpresa y una invitación para entrar.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="BigShotDotCom — Bienvenido/a">
+  <meta property="og:description" content="¿Quieres ser un [pez gordo]? Entra y descubre el trato.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <title>BigShotDotCom — Bienvenido/a</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      position: relative;
+      min-height: 100vh;
+      margin: 0;
+      overflow-x: hidden;
+      background: #69bce0;
+      font-family: "Press Start 2P", "Courier New", monospace;
+    }
+
+    .background-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 0 auto;
+    }
+
+    .background-scene {
+      position: relative;
+      width: min(100%, 768px);
+      margin: 0 auto;
+    }
+
+    .welcome {
+      position: absolute;
+      z-index: 2;
+      top: clamp(24px, 5vh, 52px);
+      right: 12px;
+      left: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      color: #fff;
+      font-size: clamp(18px, 4.5vw, 42px);
+      font-weight: 400;
+      line-height: 1.8;
+      text-shadow: 4px 4px 0 #152a55, 8px 8px 0 #28649b;
+      -webkit-font-smoothing: none;
+      image-rendering: pixelated;
+      white-space: nowrap;
+    }
+
+    .deal {
+      max-width: 100%;
+      padding: 16px;
+      border: 4px solid #fff;
+      background: #080a19e8;
+      color: #fff;
+      box-shadow: 5px 5px 0 #28649b;
+    }
+
+    .deal-question {
+      margin: 0 0 16px;
+      font-size: clamp(11px, 2vw, 15px);
+      line-height: 1.8;
+    }
+
+    .choices {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .deal-button {
+      min-width: 94px;
+      padding: 11px 14px;
+      border: 3px solid #fff;
+      background: #11182b;
+      color: #fff;
+      font: inherit;
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    .deal-button:hover, .deal-button:focus-visible {
+      outline: 3px solid #f5f31e;
+      outline-offset: 3px;
+    }
+
+    #yes-link {
+      display: block;
+      margin-top: 16px;
+      color: #f5f31e;
+      font-size: 10px;
+      line-height: 1.8;
+      overflow-wrap: anywhere;
+    }
+
+    #yes-link[hidden] {
+      display: none;
+    }
+
+    .big-shot {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: 0 20px 16px;
+      text-align: center;
+    }
+
+    .big-shot-question {
+      display: inline-block;
+      max-width: 100%;
+      margin: 0;
+      padding: 16px;
+      border: 4px solid #fff;
+      background: #080a19;
+      color: #fff;
+      font-size: clamp(11px, 2.2vw, 17px);
+      line-height: 1.9;
+      overflow-wrap: anywhere;
+      box-shadow: 5px 5px 0 #28649b;
+    }
+
+    .big-shot-stage {
+      position: relative;
+      display: flex;
+      min-height: 300px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .portrait-button {
+      z-index: 1;
+      display: block;
+      width: min(300px, 48vw);
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .portrait-button:focus-visible {
+      outline: 4px dashed #f5f31e;
+      outline-offset: 6px;
+    }
+
+    .portrait-button img {
+      display: block;
+      width: 100%;
+      height: auto;
+      image-rendering: pixelated;
+    }
+
+    .big-shot-yes {
+      position: absolute;
+      z-index: 2;
+      display: inline-block;
+      padding: 10px 12px;
+      border: 3px solid #fff;
+      background: #11182b;
+      color: #f5f31e;
+      font: inherit;
+      font-size: 11px;
+      line-height: 1.4;
+      text-decoration: none;
+      box-shadow: 3px 3px 0 #28649b;
+    }
+
+    .big-shot-yes[hidden] { display: none; }
+
+    .big-shot-yes:hover, .big-shot-yes:focus-visible {
+      outline: 3px solid #f5f31e;
+      outline-offset: 3px;
+    }
+
+    .big-shot-yes:nth-of-type(1) { top: 8%; left: 8%; }
+    .big-shot-yes:nth-of-type(2) { top: 8%; right: 8%; }
+    .big-shot-yes:nth-of-type(3) { top: 43%; left: 1%; }
+    .big-shot-yes:nth-of-type(4) { top: 43%; right: 1%; }
+    .big-shot-yes:nth-of-type(5) { bottom: 8%; left: 8%; }
+    .big-shot-yes:nth-of-type(6) { right: 8%; bottom: 8%; }
+
+    @media (max-width: 600px) {
+      .welcome { top: 12px; }
+      .deal { padding: 12px; }
+      .big-shot { padding: 0 12px 10px; }
+      .big-shot-stage {
+        min-height: auto;
+        height: min(58vw, 300px);
+        display: flex;
+      }
+      .portrait-button {
+        width: min(280px, 68vw);
+      }
+      .big-shot-yes {
+        padding: 10px 6px;
+        font-size: 9px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background-scene">
+    <img class="background-image" src="background.webp" alt="">
+    <section class="big-shot" aria-labelledby="big-shot-question">
+      <p class="big-shot-question" id="big-shot-question">¿Quieres ser un [pez gordo]?<br>Entonces dale a Sí</p>
+      <div class="big-shot-stage">
+        <a class="big-shot-yes" href="https://www.roblox.com/share?code=01060b73c1961743ab96b1ff700f3f8c&amp;type=Server" target="_blank" rel="noopener noreferrer" hidden>Sí</a>
+        <a class="big-shot-yes" href="https://www.roblox.com/share?code=01060b73c1961743ab96b1ff700f3f8c&amp;type=Server" target="_blank" rel="noopener noreferrer" hidden>Sí</a>
+        <a class="big-shot-yes" href="https://www.roblox.com/share?code=01060b73c1961743ab96b1ff700f3f8c&amp;type=Server" target="_blank" rel="noopener noreferrer" hidden>Sí</a>
+        <button class="portrait-button" id="portrait-button" type="button" aria-label="Cambiar expresión del personaje">
+          <img id="portrait" src="spamton-closed.webp" alt="Personaje pixelado con la boca cerrada">
+        </button>
+        <a class="big-shot-yes" href="https://www.roblox.com/share?code=01060b73c1961743ab96b1ff700f3f8c&amp;type=Server" target="_blank" rel="noopener noreferrer" hidden>Sí</a>
+        <a class="big-shot-yes" href="https://www.roblox.com/share?code=01060b73c1961743ab96b1ff700f3f8c&amp;type=Server" target="_blank" rel="noopener noreferrer" hidden>Sí</a>
+        <a class="big-shot-yes" href="https://www.roblox.com/share?code=01060b73c1961743ab96b1ff700f3f8c&amp;type=Server" target="_blank" rel="noopener noreferrer" hidden>Sí</a>
+      </div>
+    </section>
+  </div>
+  <section class="welcome" aria-label="Bienvenida">
+    <h1>Bienvenido/a</h1>
+    <div class="deal">
+      <p class="deal-question">¿Tenemos un trato?</p>
+      <div class="choices">
+        <button class="deal-button" id="yes-button" type="button">Sí</button>
+        <button class="deal-button" id="no-button" type="button">No</button>
+      </div>
+      <a id="yes-link" href="https://www.roblox.com/share?code=01060b73c1961743ab96b1ff700f3f8c&type=Server" target="_blank" rel="noopener noreferrer" hidden>¡Trato hecho! Entra aquí</a>
+    </div>
+  </section>
+  <script>
+    const yesButton = document.querySelector("#yes-button");
+    const noButton = document.querySelector("#no-button");
+    const yesLink = document.querySelector("#yes-link");
+    const portraitButton = document.querySelector("#portrait-button");
+    const portrait = document.querySelector("#portrait");
+    let mouthOpen = false;
+
+    portraitButton.addEventListener("click", () => {
+      mouthOpen = !mouthOpen;
+      portrait.src = mouthOpen ? "spamton-open.png" : "spamton-closed.webp";
+      portrait.alt = mouthOpen
+        ? "Personaje pixelado con la boca abierta"
+        : "Personaje pixelado con la boca cerrada";
+      document.querySelectorAll(".big-shot-yes").forEach((link) => {
+        link.hidden = false;
+      });
+    });
+
+    yesButton.addEventListener("click", () => {
+      yesLink.hidden = false;
+    });
+
+    function moveNoButton(pointerX, pointerY) {
+      const buttonRect = noButton.getBoundingClientRect();
+      const padding = 12;
+      const maxX = Math.max(padding, window.innerWidth - buttonRect.width - padding);
+      const maxY = Math.max(padding, window.innerHeight - buttonRect.height - padding);
+      let left = padding;
+      let top = padding;
+
+      for (let attempt = 0; attempt < 20; attempt += 1) {
+        left = padding + Math.random() * (maxX - padding);
+        top = padding + Math.random() * (maxY - padding);
+        const distance = Math.hypot(left + buttonRect.width / 2 - pointerX, top + buttonRect.height / 2 - pointerY);
+        if (distance > 150) break;
+      }
+
+      noButton.style.position = "fixed";
+      noButton.style.left = `${left}px`;
+      noButton.style.top = `${top}px`;
+      noButton.style.zIndex = "2";
+    }
+
+    noButton.addEventListener("pointerenter", (event) => {
+      if (event.pointerType === "mouse") {
+        moveNoButton(event.clientX, event.clientY);
+      }
+    });
+    noButton.addEventListener("click", (event) => {
+      moveNoButton(event.clientX, event.clientY);
+    });
+  </script>
+</body>
+</html>
